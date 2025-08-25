@@ -1,4 +1,6 @@
+use minigrep::search;
 use std::env;
+use std::error::Error;
 use std::fs;
 use std::process;
 
@@ -12,10 +14,20 @@ fn main() {
     println!("Searching for {}", config.query);
     println!("In file {}", config.file_path);
 
-    let contents = fs::read_to_string(config.file_path)
-        .expect("Should have been able to read the file but didn't.");
+    if let Err(e) = run(config) {
+        println!("Application Error: {e}");
+        process::exit(1);
+    }
+}
 
-    println!("With text: \n{contents}");
+fn run(config: Config) -> Result<(), Box<dyn Error>> {
+    let contents = fs::read_to_string(config.file_path)?;
+
+    for line in search(&config.query, &contents) {
+        println!("{line}");
+    }
+
+    Ok(())
 }
 
 struct Config {
