@@ -56,9 +56,9 @@ mod tests {
     fn one_result() {
         let query = "duct";
         let contents = "\
-        Rust:
-        safe,fast,productive.
-        Pick Three";
+Rust:
+safe,fast,productive.
+Pick Three";
         assert_eq!(vec!["safe,fast,productive."], search(query, contents));
     }
 }
