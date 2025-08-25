@@ -7,3 +7,7 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     }
     results
 }
+
+fn search_case_insensitive<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    
+}
