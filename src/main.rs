@@ -50,6 +50,8 @@ impl Config {
 
 #[cfg(test)]
 mod tests {
+    use minigrep::search_case_insensitive;
+
     use super::*;
 
     #[test]
